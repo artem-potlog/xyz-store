@@ -19,7 +19,7 @@ type Shot = {
 
 const SHOTS: Shot[] = [
   {
-    src: "concept/exterior-day.png",
+    src: "/concept/exterior-day.png",
     short: "День",
     title: "Витрина · день",
     caption:
@@ -30,7 +30,7 @@ const SHOTS: Shot[] = [
     ],
   },
   {
-    src: "concept/exterior-night.png",
+    src: "/concept/exterior-night.png",
     short: "Ночь",
     title: "Витрина · ночь / зима",
     caption:
@@ -41,7 +41,7 @@ const SHOTS: Shot[] = [
     ],
   },
   {
-    src: "concept/interior-cafe.png",
+    src: "/concept/interior-cafe.png",
     short: "Кафе",
     title: "Зона кулинарии и кофе",
     caption:

@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react";
 // Static SPA optimized for Render deployment.
 export default defineConfig({
   plugins: [react()],
-  base: "./",
+  base: "/",
   build: {
     outDir: "dist",
     sourcemap: false,

@@ -116,11 +116,18 @@ export function Recommendation() {
             <div className="flex items-center gap-2 text-neon-green">
               <ShieldCheck className="h-4 w-4" />
               <span className="text-xs font-semibold uppercase tracking-wider">
-                Защитный механизм · stage-gate через 6 мес.
+                Защитный механизм
               </span>
             </div>
+            <h3 className="mt-3 font-display text-xl font-semibold text-white">
+              Stage-gate через 6 мес.
+            </h3>
+            <p className="mt-2 text-sm text-slate-400">
+              5 порогов: трафик, маржа, аренда, CAPEX, ФОТ. Каждый - калибровка
+              под расчётную чувствительность NPV.
+            </p>
 
-            <ul className="mt-3 space-y-2">
+            <ul className="mt-4 space-y-2">
               {GO_NO_GO.map((g, i) => (
                 <motion.li
                   key={g.title}
@@ -128,20 +135,22 @@ export function Recommendation() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.15 + i * 0.05, duration: 0.4 }}
-                  className="flex items-baseline justify-between gap-3 rounded-lg border border-white/10 bg-white/[0.02] px-3 py-2"
+                  className="rounded-lg border border-white/10 bg-white/[0.02] p-3"
                 >
-                  <span className="text-sm text-slate-300">{g.title}</span>
-                  <span className="num shrink-0 text-right text-sm font-semibold text-neon-green">
-                    {g.threshold}
-                  </span>
+                  <div className="flex items-baseline justify-between gap-3">
+                    <span className="text-sm font-medium text-slate-200">
+                      {g.title}
+                    </span>
+                    <span className="num shrink-0 text-right text-sm font-semibold text-neon-green">
+                      {g.threshold}
+                    </span>
+                  </div>
+                  <div className="mt-1 text-[11px] leading-snug text-slate-500">
+                    {g.why}
+                  </div>
                 </motion.li>
               ))}
             </ul>
-
-            <p className="mt-3 text-[11px] text-slate-500">
-              Каждый порог откалиброван под расчётную чувствительность NPV.
-              Масштабирование на 30+ магазинов - только при прохождении всех пяти.
-            </p>
           </div>
         </motion.div>
       </div>

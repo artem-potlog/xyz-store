@@ -221,14 +221,14 @@ export const PEERS = [
     ebitdaNote: "Q4'24: 8,1%",
     group: "benchmark" as const,
   },
-  { name: "Лента — Монетка (у дома)", area: 272, density: 346, gm: null, ebitda: null, group: "peer" as const },
-  { name: "X5 — Пятёрочка (у дома)", area: 300, density: 422, gm: 24, ebitda: 6.5, ebitdaNote: "сегм. ~6-7%", group: "peer" as const },
-  { name: "X5 — Чижик (хард-дискаунтер)", area: 350, density: null, gm: null, ebitda: 0, ebitdaNote: "~0%", group: "peer" as const },
+  { name: "Лента - Монетка (у дома)", area: 272, density: 346, gm: null, ebitda: null, group: "peer" as const },
+  { name: "X5 - Пятёрочка (у дома)", area: 300, density: 422, gm: 24, ebitda: 6.5, ebitdaNote: "сегм. ~6-7%", group: "peer" as const },
+  { name: "X5 - Чижик (хард-дискаунтер)", area: 350, density: null, gm: null, ebitda: 0, ebitdaNote: "~0%", group: "peer" as const },
   { name: "Магнит (группа) 2024", area: 250, density: 280, gm: null, ebitda: 5.5, group: "peer" as const },
   { name: "ВкусВилл (с дарксторами)", area: 150, density: null, gm: null, ebitda: 5, ebitdaNote: "оценка", group: "peer" as const },
-  { name: "О'КЕЙ — гипермаркеты 2024", area: 5500, density: null, gm: null, ebitda: 9.1, group: "peer" as const },
-  { name: "Пилот XYZ — Y1", area: 180, density: 513, gm: 27, ebitda: 7.1, group: "pilot" as const },
-  { name: "Пилот XYZ — Y5 (зрелая фаза)", area: 180, density: 705, gm: 27, ebitda: 8.1, group: "pilot" as const },
+  { name: "О'КЕЙ - гипермаркеты 2024", area: 5500, density: null, gm: null, ebitda: 9.1, group: "peer" as const },
+  { name: "Пилот XYZ - Y1", area: 180, density: 513, gm: 27, ebitda: 7.1, group: "pilot" as const },
+  { name: "Пилот XYZ - Y5 (зрелая фаза)", area: 180, density: 705, gm: 27, ebitda: 8.1, group: "pilot" as const },
 ];
 
 export const GO_NO_GO = [
@@ -291,22 +291,22 @@ export const ASSUMPTIONS = [
 
 export const SOURCES = [
   {
-    name: "Совкомбанк — Рынок продуктового ритейла",
+    name: "Совкомбанк - Рынок продуктового ритейла",
     use: "Объём рынка 26,5 трлн ₽; плотность X5 367,5 тыс. ₽/м²; LFL-динамика лидеров",
     type: "PDF",
   },
   {
-    name: "Альфа-Банк — Российский ритейл и Ecom 2026 (март 2026)",
+    name: "Альфа-Банк - Российский ритейл и Ecom 2026 (март 2026)",
     use: "Прогноз 2026: food-retail +6,6%; FMCG +7-7,5%; e-grocery +21%; фокус на готовую еду",
     type: "PDF · OCR",
   },
   {
-    name: "Нильсен — FMCG 2025",
+    name: "Нильсен - FMCG 2025",
     use: "Демография; индекс оптимизма 106; СПб 48% соло-домохозяйств; готовая еда +30%",
     type: "PDF",
   },
   {
-    name: "ДРС — Локтев",
+    name: "ДРС - Локтев",
     use: "СПб среднедушевой доход 71,9 тыс. ₽/мес. (+19,6% г/г); 38% бюджета на FMCG",
     type: "PDF",
   },
@@ -346,7 +346,7 @@ export const SOURCES = [
     type: "Open",
   },
   {
-    name: "Ведомости + smartlab.news — X5 МСФО 2024",
+    name: "Ведомости + smartlab.news - X5 МСФО 2024",
     use: "Выручка 3,908 трлн ₽, EBITDA margin 6,4%, LFL +14,4%",
     type: "Open",
   },
@@ -357,13 +357,3 @@ export const SOURCES = [
   },
 ];
 
-export const ITERATIONS = [
-  { n: 1, title: "Базовый каркас", note: "Структура записки, единая модель, базовый сегментный анализ. NPV ≈ +37 млн ₽." },
-  { n: 2, title: "Реалистичность допущений", note: "Калибровка плотности vs Пятёрочка/Лента, ФОТ 6,7 → 8,0, GM 26,5% → 27%. NPV ≈ +16 млн ₽." },
-  { n: 3, title: "Подключение PDF", note: "4 русских отчёта интегрированы. 26,5 трлн рынка; 48% соло-домохозяйств в СПб; +30% готовая еда." },
-  { n: 4, title: "OCR Альфа-Банка", note: "5-й PDF через RapidOCR. Прогноз 2026: food-retail +6,6%, фокус на готовую еду." },
-  { n: 5, title: "Сценарии и матрица", note: "4 макросценария + 2-факторная матрица NPV (выручка × маржа)." },
-  { n: 6, title: "Сценарии в записке", note: "1-факторная чувствительность и 5×5 матрица в записку с расшифровками." },
-  { n: 7, title: "Адаптация grocery template", note: "6 механик из US-шаблона. NPV → +8,5 млн ₽ (более честно)." },
-  { n: 8, title: "Peer comparison vs Лента", note: "Сравнение пилота с Лентой + 6 других ритейлеров. Записка ужата до 2 страниц." },
-];

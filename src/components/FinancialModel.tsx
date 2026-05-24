@@ -551,7 +551,7 @@ function AssumptionsPanel() {
         Все ключевые допущения модели
       </h3>
       <p className="mt-1 text-sm text-slate-400">
-        20+ допущений с источниками — на листе <span className="num text-white">Assumptions</span> Excel-модели.
+        20+ допущений с источниками - на листе <span className="num text-white">Assumptions</span> Excel-модели.
       </p>
       <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {ASSUMPTIONS.map((a, i) => (

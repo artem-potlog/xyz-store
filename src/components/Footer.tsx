@@ -5,11 +5,11 @@ export function Footer() {
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div>
             <div className="font-display text-sm font-semibold text-white">
-              Severgroup XYZ · Пилот продуктового ритейла в Санкт-Петербурге
+              Company XYZ · Пилот продуктового ритейла в Санкт-Петербурге
             </div>
             <div className="mt-1 text-xs text-slate-500">
               Интерактивная версия аналитической записки и приложения.
-              Все ключевые цифры — в Excel-модели (15 листов) и Приложении 1
+              Все ключевые цифры - в Excel-модели (15 листов) и Приложении 1
               (11 глав).
             </div>
           </div>

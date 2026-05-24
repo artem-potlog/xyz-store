@@ -1,9 +1,9 @@
 {
-  "name": "severgroup-food-retail-dashboard",
+  "name": "xyz-store",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Interactive dashboard for the Severgroup XYZ food retail pilot case (Saint Petersburg).",
+  "description": "Interactive dashboard for the Company XYZ food retail pilot case (Saint Petersburg).",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

@@ -25,7 +25,7 @@ export function Scenarios() {
       id="scenarios"
       eyebrow="4 макросценария · research-grounded"
       title="Что если макро изменится"
-      intro="Каждый сценарий — это набор драйверов с обоснованием в источниках. Кликните по сценарию, чтобы увидеть детали и сравнить NPV/IRR/DPP."
+      intro="Каждый сценарий - это набор драйверов с обоснованием в источниках. Кликните по сценарию, чтобы увидеть детали и сравнить NPV/IRR/DPP."
     >
       <div className="grid gap-6 lg:grid-cols-12">
         <div className="space-y-3 lg:col-span-7">
@@ -79,7 +79,7 @@ export function Scenarios() {
                     <div>
                       <div className="text-[9px] uppercase tracking-wider text-slate-500">DPP</div>
                       <div className="num font-display text-lg font-bold text-white">
-                        {s.dpp ? s.dpp.toFixed(1) : "—"}
+                        {s.dpp ? s.dpp.toFixed(1) : "-"}
                       </div>
                     </div>
                   </div>

@@ -57,7 +57,7 @@ export function Navigation() {
           <a href="#hero" className="flex items-center gap-2.5">
             <Logo />
             <div className="hidden sm:block">
-              <div className="text-sm font-semibold leading-tight text-white">Severgroup XYZ</div>
+              <div className="text-sm font-semibold leading-tight text-white">Company XYZ</div>
               <div className="text-[10px] uppercase tracking-[0.18em] text-slate-400">Пилот · СПб</div>
             </div>
           </a>

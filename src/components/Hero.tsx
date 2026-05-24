@@ -22,7 +22,7 @@ export function Hero() {
           className="mb-6 inline-flex items-center gap-2 self-start rounded-full border border-neon-green/30 bg-neon-green/10 px-4 py-1.5 text-xs font-medium text-neon-green backdrop-blur-sm"
         >
           <Sparkles className="h-3.5 w-3.5" />
-          Severgroup XYZ · Кейс 2026 · Аналитика для Совета директоров
+          Company XYZ · Кейс 2026 · Аналитика для Совета директоров
         </motion.div>
 
         <motion.h1
@@ -42,8 +42,8 @@ export function Hero() {
           className="mt-7 max-w-3xl text-lg leading-relaxed text-slate-300 md:text-xl"
         >
           10 магазинов формата <span className="text-white">soft discounter</span> /
-          магазин у дома, 180 м², с акцентом на готовую еду и СТМ — в плотных жилых
-          районах СПб. Перед вами — интерактивная версия аналитической записки и
+          магазин у дома, 180 м², с акцентом на готовую еду и СТМ - в плотных жилых
+          районах СПб. Перед вами - интерактивная версия аналитической записки и
           приложения с расчётами.
         </motion.p>
 

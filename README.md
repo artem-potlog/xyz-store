@@ -1,18 +1,18 @@
 # XYZ Store · Interactive Dashboard
 
 Интерактивный дашборд для кейса «Пилот продуктового ритейла XYZ в
-Санкт-Петербурге» — та же аналитическая записка и приложение с расчётами,
+Санкт-Петербурге» - та же аналитическая записка и приложение с расчётами,
 но в формате кликабельного high-tech дашборда: NPV / IRR / DPP-счётчики,
 сегментный светофор, концепт-галерея, чувствительность, сценарии,
 peer-сравнение, stage-gate.
 
 ## Стек
 
-- **Vite + React 18 + TypeScript** — статичный SPA
-- **Tailwind CSS** — дизайн-система (тёмная тема + glassmorphism)
-- **Framer Motion** — анимации появления, hover, layout
-- **Recharts** — графики (pie, bar, radar, composed, scatter)
-- **Lucide-react** — иконки
+- **Vite + React 18 + TypeScript** - статичный SPA
+- **Tailwind CSS** - дизайн-система (тёмная тема + glassmorphism)
+- **Framer Motion** - анимации появления, hover, layout
+- **Recharts** - графики (pie, bar, radar, composed, scatter)
+- **Lucide-react** - иконки
 
 ## Локальный запуск
 
@@ -39,10 +39,10 @@ npm run preview      # http://localhost:4173
    - **Build Command:** `npm ci && npm run build`
    - **Publish Directory:** `./dist`
    - SPA-rewrite: `/* → /index.html`
-4. Нажать **Apply** — через 1-2 минуты будет live URL вида
+4. Нажать **Apply** - через 1-2 минуты будет live URL вида
    `https://xyz-store.onrender.com`.
 
-Альтернативно — вручную: **New → Static Site** → подключить репо →
+Альтернативно - вручную: **New → Static Site** → подключить репо →
 указать те же Build / Publish, добавить rewrite `/* → /index.html`.
 
 ## Структура
@@ -94,5 +94,5 @@ xyz-store/
 | Stage-gate | 5 порогов go/no-go с цветовой кодировкой |
 | Sources | 13 источников с фильтром + ИИ-disclosure + 8 итераций |
 
-Все цифры — single source of truth в `src/data/caseData.ts` и
+Все цифры - single source of truth в `src/data/caseData.ts` и
 соответствуют корневому `README.md` / Excel-модели / записке.

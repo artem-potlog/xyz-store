@@ -19,7 +19,7 @@ import { Users, Repeat, ShoppingBag, Coins, Receipt, Sparkles } from "lucide-rea
 import { Section } from "./Section";
 import { AnimatedNumber } from "./AnimatedNumber";
 import {
-  COHORT_FUNNEL,
+  COHORT_STEPS,
   PRODUCT_MIX,
   BLENDED_GM,
   PAYROLL,
@@ -47,8 +47,8 @@ export function FinancialModel() {
     <Section
       id="model"
       eyebrow="Финансовая модель"
-      title="Механики, адаптированные под СПб"
-      intro="6 механик из профессионального grocery template (US, 26 листов) калиброваны под российский рынок: когортная воронка, mix-weighted GM, ФОТ по ролям, OPEX-разбивка, ramp-up Y1, breakeven."
+      title="Механики расчёта"
+      intro="Модель построена на 6 механиках: когортная воронка для выручки, mix-weighted GM по 6 категориям, ФОТ по 5 ролям × loading-фактор, OPEX по 9 статьям, ramp-up Y1 и breakeven-анализ. Каждая откалибрована под СПб-рынок и публичные данные ритейлеров."
     >
       {/* Tabs */}
       <div className="mb-8 flex flex-wrap gap-2">
@@ -88,47 +88,81 @@ export function FinancialModel() {
   );
 }
 
-/* -------- Cohort funnel -------- */
-function CohortPanel() {
-  const max = Math.max(...COHORT_FUNNEL.map((c) => c.value));
+/* -------- Cohort calculation chain -------- */
+type CohortStepData = (typeof COHORT_STEPS)[number];
 
+function CohortStep({ step, index }: { step: CohortStepData; index: number }) {
+  const isFinal = index === COHORT_STEPS.length - 1;
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.45, delay: index * 0.08, ease: "easeOut" }}
+    >
+      {step.arrow && (
+        <div className="ml-5 flex items-center gap-2.5 py-1.5">
+          <div className="h-5 w-px bg-gradient-to-b from-transparent via-neon-cyan/40 to-neon-cyan/60" />
+          <span className="num inline-flex items-center rounded-md border border-neon-cyan/30 bg-neon-cyan/[0.08] px-2 py-0.5 text-[11px] font-semibold tracking-wide text-neon-cyan">
+            {step.arrow.op}
+          </span>
+          <span className="text-[11px] text-slate-500">{step.arrow.caption}</span>
+        </div>
+      )}
+      <div
+        className={`rounded-xl border p-3 transition-colors ${
+          isFinal
+            ? "border-neon-green/40 bg-neon-green/[0.06]"
+            : "border-white/10 bg-white/[0.02] hover:border-white/20"
+        }`}
+      >
+        <div className="flex items-baseline justify-between gap-3">
+          <div className="min-w-0">
+            <div className="text-[10px] uppercase tracking-wider text-slate-500">
+              Шаг {index + 1}
+            </div>
+            <div
+              className={`text-sm font-medium ${isFinal ? "text-neon-green" : "text-white"}`}
+            >
+              {step.label}
+            </div>
+          </div>
+          <div className="text-right">
+            <div
+              className={`num font-display text-2xl font-bold leading-none ${
+                isFinal ? "text-neon-green" : "text-white"
+              }`}
+            >
+              <AnimatedNumber value={step.value} />
+            </div>
+            <div className="num mt-0.5 text-[11px] text-slate-500">
+              {step.unit}
+            </div>
+          </div>
+        </div>
+        <div className="mt-1.5 text-[11px] text-slate-400">{step.note}</div>
+      </div>
+    </motion.div>
+  );
+}
+
+function CohortPanel() {
   return (
     <div className="grid gap-6 lg:grid-cols-12">
       <div className="card lg:col-span-7">
         <h3 className="font-display text-lg font-semibold text-white">
-          Когортная воронка · 1 магазин
+          Когортная цепочка расчёта · 1 магазин
         </h3>
         <p className="mt-1 text-sm text-slate-400">
-          Visitor → Buyer → Repeat → Orders. Lifetime repeat-клиента 36 мес. → steady-state 7 500 active repeats.
+          Сколько заказов в год даёт один магазин, если стабилизироваться на
+          5 000 новых клиентов в год с 50% repeat-конверсией и 36-месячным
+          lifetime. Между шагами - операции, по которым считается следующее
+          число.
         </p>
 
-        <div className="mt-6 space-y-3">
-          {COHORT_FUNNEL.map((stage, i) => (
-            <motion.div
-              key={stage.stage}
-              initial={{ opacity: 0, x: -16 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="relative"
-            >
-              <div className="mb-1 flex items-baseline justify-between text-sm">
-                <span className="text-slate-300">{stage.stage}</span>
-                <span className="num font-display text-lg font-semibold text-white">
-                  <AnimatedNumber value={stage.value} />
-                </span>
-              </div>
-              <div className="h-8 w-full overflow-hidden rounded-lg bg-white/5">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${(stage.value / max) * 100}%` }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1.2, ease: "easeOut", delay: i * 0.1 }}
-                  className="h-full bg-gradient-to-r from-neon-green via-neon-cyan to-neon-violet"
-                />
-              </div>
-              <div className="mt-1 text-[11px] text-slate-500">{stage.note}</div>
-            </motion.div>
+        <div className="mt-6 space-y-1.5">
+          {COHORT_STEPS.map((step, i) => (
+            <CohortStep key={step.label} step={step} index={i} />
           ))}
         </div>
       </div>

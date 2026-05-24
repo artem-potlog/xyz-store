@@ -90,12 +90,41 @@ export const SCORING_WEIGHTS = [
   { key: "ops", label: "Операционный fit", weight: 10 },
 ];
 
-export const COHORT_FUNNEL = [
-  { stage: "Новые клиенты / год", value: 5000, note: "на магазин" },
-  { stage: "Repeat-конверсия 50%", value: 2500, note: "новых repeat / год" },
-  { stage: "Steady-state база", value: 7500, note: "active repeats (lifetime 36 мес.)" },
-  { stage: "Заказы от repeat", value: 180000, note: "2 заказа / мес × 7 500" },
-  { stage: "Всего заказов / год", value: 182500, note: "+ 2 500 one-time" },
+export const COHORT_STEPS = [
+  {
+    label: "Новые клиенты",
+    value: 5000,
+    unit: "/ год",
+    note: "посетителей, ставших покупателями",
+  },
+  {
+    label: "Новые repeat",
+    value: 2500,
+    unit: "/ год",
+    note: "клиенты с 3+ визитами за период",
+    arrow: { op: "× 50%", caption: "repeat-конверсия" },
+  },
+  {
+    label: "Active repeats",
+    value: 7500,
+    unit: "база",
+    note: "steady-state на магазин",
+    arrow: { op: "× 3 года", caption: "lifetime repeat-клиента (36 мес.)" },
+  },
+  {
+    label: "Orders от repeats",
+    value: 180000,
+    unit: "/ год",
+    note: "вся когорта × частота заказов",
+    arrow: { op: "× 24 заказа", caption: "2 / месяц × 12 мес." },
+  },
+  {
+    label: "Всего orders",
+    value: 182500,
+    unit: "/ год",
+    note: "база для расчёта выручки",
+    arrow: { op: "+ 2 500", caption: "one-time orders" },
+  },
 ];
 
 export const PRODUCT_MIX = [

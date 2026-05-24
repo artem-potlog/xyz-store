@@ -41,7 +41,7 @@ export function Recommendation() {
       title="Запустить пилот, но открывать stage-gate"
       intro="Базовый сценарий проходит барьер WACC 20% с положительным NPV, но запас тонкий - масштабирование только после 6 месяцев работы первых точек по пяти жёстким порогам."
     >
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="grid gap-6 lg:grid-cols-3 lg:items-start">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -49,7 +49,7 @@ export function Recommendation() {
           transition={{ duration: 0.6 }}
           className="lg:col-span-2"
         >
-          <div className="card card-hover relative h-full overflow-hidden">
+          <div className="card card-hover relative overflow-hidden">
             <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-neon-green/10 blur-3xl" />
             <div className="relative">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-neon-green/30 bg-neon-green/10 px-3 py-1 text-xs font-medium text-neon-green">
@@ -123,8 +123,9 @@ export function Recommendation() {
               Stage-gate через 6 мес.
             </h3>
             <p className="mt-2 text-sm text-slate-400">
-              5 порогов: трафик, маржа, аренда, CAPEX, ФОТ. Каждый - калибровка
-              под расчётную чувствительность NPV.
+              5 порогов go / no-go. Все пройдены - масштабируем на 30+ магазинов.
+              Любой нарушен - пилот не масштабируется, потому что NPV или EBITDA
+              уйдут ниже плана.
             </p>
 
             <ul className="mt-4 space-y-2">

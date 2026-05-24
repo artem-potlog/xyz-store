@@ -59,7 +59,7 @@ export function StageGate() {
               </div>
               <div className="my-4 h-px bg-white/10" />
               <p className="text-sm text-slate-400">
-                <strong className="text-white">Зачем:</strong> {g.why}
+                <strong className="text-white">Если нарушено:</strong> {g.why.replace(/^Ниже → |^Выше → /, "")}
               </p>
             </motion.div>
           );

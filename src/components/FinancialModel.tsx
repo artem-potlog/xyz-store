@@ -46,7 +46,7 @@ export function FinancialModel() {
   return (
     <Section
       id="model"
-      eyebrow="Слой 2 · Финансовая модель"
+      eyebrow="Финансовая модель"
       title="Механики, адаптированные под СПб"
       intro="6 механик из профессионального grocery template (US, 26 листов) калиброваны под российский рынок: когортная воронка, mix-weighted GM, ФОТ по ролям, OPEX-разбивка, ramp-up Y1, breakeven."
     >

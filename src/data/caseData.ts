@@ -214,6 +214,7 @@ export const SENSITIVITY_NPV: number[][] = [
 export const PEERS = [
   {
     name: "Лента (группа) 2024",
+    short: "Лента",
     area: 687,
     density: 372,
     gm: 21.7,
@@ -221,14 +222,14 @@ export const PEERS = [
     ebitdaNote: "Q4'24: 8,1%",
     group: "benchmark" as const,
   },
-  { name: "Лента - Монетка (у дома)", area: 272, density: 346, gm: null, ebitda: null, group: "peer" as const },
-  { name: "X5 - Пятёрочка (у дома)", area: 300, density: 422, gm: 24, ebitda: 6.5, ebitdaNote: "сегм. ~6-7%", group: "peer" as const },
-  { name: "X5 - Чижик (хард-дискаунтер)", area: 350, density: null, gm: null, ebitda: 0, ebitdaNote: "~0%", group: "peer" as const },
-  { name: "Магнит (группа) 2024", area: 250, density: 280, gm: null, ebitda: 5.5, group: "peer" as const },
-  { name: "ВкусВилл (с дарксторами)", area: 150, density: null, gm: null, ebitda: 5, ebitdaNote: "оценка", group: "peer" as const },
-  { name: "О'КЕЙ - гипермаркеты 2024", area: 5500, density: null, gm: null, ebitda: 9.1, group: "peer" as const },
-  { name: "Пилот XYZ - Y1", area: 180, density: 513, gm: 27, ebitda: 7.1, group: "pilot" as const },
-  { name: "Пилот XYZ - Y5 (зрелая фаза)", area: 180, density: 705, gm: 27, ebitda: 8.1, group: "pilot" as const },
+  { name: "Лента - Монетка (у дома)", short: "Монетка", area: 272, density: 346, gm: null, ebitda: null, group: "peer" as const },
+  { name: "X5 - Пятёрочка (у дома)", short: "Пятёрочка", area: 300, density: 422, gm: 24, ebitda: 6.5, ebitdaNote: "сегм. ~6-7%", group: "peer" as const },
+  { name: "X5 - Чижик (хард-дискаунтер)", short: "Чижик", area: 350, density: null, gm: null, ebitda: 0, ebitdaNote: "~0%", group: "peer" as const },
+  { name: "Магнит (группа) 2024", short: "Магнит", area: 250, density: 280, gm: null, ebitda: 5.5, group: "peer" as const },
+  { name: "ВкусВилл (с дарксторами)", short: "ВкусВилл", area: 150, density: null, gm: null, ebitda: 5, ebitdaNote: "оценка", group: "peer" as const },
+  { name: "О'КЕЙ - гипермаркеты 2024", short: "О'КЕЙ", area: 5500, density: null, gm: null, ebitda: 9.1, group: "peer" as const },
+  { name: "Пилот XYZ - Y1", short: "Пилот Y1", area: 180, density: 513, gm: 27, ebitda: 7.1, group: "pilot" as const },
+  { name: "Пилот XYZ - Y5 (зрелая фаза)", short: "Пилот Y5", area: 180, density: 705, gm: 27, ebitda: 8.1, group: "pilot" as const },
 ];
 
 export const GO_NO_GO = [

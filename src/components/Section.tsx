@@ -12,14 +12,14 @@ type Props = {
 
 export function Section({ id, eyebrow, title, intro, children, tone = "default" }: Props) {
   return (
-    <section id={id} className="relative scroll-mt-24 py-20 md:py-28">
+    <section id={id} className="relative scroll-mt-24 py-10 md:py-14">
       <div className="mx-auto w-full max-w-7xl px-5 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-15% 0px" }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="mb-12 max-w-3xl"
+          className="mb-8 max-w-3xl"
         >
           {eyebrow && (
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-slate-400">

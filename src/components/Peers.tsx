@@ -7,7 +7,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Cell,
   ZAxis,
 } from "recharts";
 import { Section } from "./Section";
@@ -15,10 +14,12 @@ import { PEERS } from "../data/caseData";
 
 type PeerDatum = {
   name: string;
+  short: string;
   area: number;
   density: number;
   gm: number | null;
   ebitda: number | null;
+  ebitdaSize: number;
   group: "pilot" | "benchmark" | "peer";
 };
 
@@ -46,20 +47,54 @@ const COLOR = {
 };
 
 // Plot only entries with a known density value.
-const PLOTTABLE = PEERS.filter((p) => p.density !== null) as Array<{
-  name: string;
-  area: number;
-  density: number;
-  gm: number | null;
-  ebitda: number | null;
-  group: "pilot" | "benchmark" | "peer";
-}>;
+// Bubble size encodes EBITDA margin; null EBITDA defaults to 6 (mid-range).
+const PLOTTABLE: PeerDatum[] = PEERS.filter((p) => p.density !== null).map(
+  (p) => ({
+    ...(p as Omit<PeerDatum, "ebitdaSize">),
+    ebitdaSize: p.ebitda ?? 6,
+  })
+);
+
+// Custom shape: draws the bubble + a short label above it.
+function PeerBubble(props: any) {
+  const { cx, cy, payload } = props as { cx: number; cy: number; payload: PeerDatum };
+  if (cx == null || cy == null) return null;
+  const r = Math.max(6, Math.min(24, payload.ebitdaSize * 2.4));
+  const fill = COLOR[payload.group];
+  const isPilot = payload.group === "pilot";
+  const isBench = payload.group === "benchmark";
+  const labelColor = isPilot ? "#5eead4" : isBench ? "#a78bfa" : "#cbd5e1";
+  return (
+    <g>
+      <circle
+        cx={cx}
+        cy={cy}
+        r={r}
+        fill={fill}
+        fillOpacity={isPilot ? 0.85 : 0.65}
+        stroke={isPilot ? "#fff" : isBench ? "#a78bfa" : "transparent"}
+        strokeWidth={isPilot ? 1.5 : isBench ? 1 : 0}
+      />
+      <text
+        x={cx}
+        y={cy - r - 6}
+        textAnchor="middle"
+        fontSize={11}
+        fontWeight={isPilot ? 700 : isBench ? 600 : 500}
+        fill={labelColor}
+        style={{ paintOrder: "stroke", stroke: "rgba(5,7,13,0.9)", strokeWidth: 3, strokeLinejoin: "round" }}
+      >
+        {payload.short}
+      </text>
+    </g>
+  );
+}
 
 export function Peers() {
   return (
     <Section
       id="peers"
-      eyebrow="Слой 3 · Peer benchmark"
+      eyebrow="Peer benchmark"
       title="Пилот vs публичные ритейлеры"
       intro="Лента - контрольный бенчмарк для Company XYZ. EBITDA margin Y5 пилота (8,1%) совпадает с Лентой Q4'24; плотность продаж - выше группы и Монетки за счёт компактного формата и доли готовой еды."
     >
@@ -69,12 +104,12 @@ export function Peers() {
             Плотность продаж × Площадь магазина
           </h3>
           <p className="mt-1 text-sm text-slate-400">
-            Bubble size = площадь. Пилот <span className="text-neon-green">●</span>, бенчмарк (Лента) <span className="text-neon-violet">●</span>, прочие <span className="text-slate-400">●</span>.
+            Bubble size = EBITDA margin. Пилот <span className="text-neon-green">●</span>, бенчмарк (Лента) <span className="text-neon-violet">●</span>, прочие <span className="text-slate-400">●</span>.
           </p>
 
           <div className="mt-6 h-96 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <ScatterChart margin={{ top: 20, right: 20, bottom: 30, left: 20 }}>
+              <ScatterChart margin={{ top: 30, right: 30, bottom: 30, left: 20 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
                 <XAxis
                   type="number"
@@ -93,22 +128,19 @@ export function Peers() {
                   unit=" тыс. ₽/м²"
                   tick={{ fill: "#94a3b8", fontSize: 11 }}
                   label={{ value: "Плотность, тыс. ₽/м²/год", angle: -90, position: "insideLeft", fill: "#64748b", fontSize: 11 }}
+                  domain={[200, 800]}
                 />
-                <ZAxis dataKey="area" range={[60, 400]} />
+                <ZAxis dataKey="ebitdaSize" range={[100, 600]} name="EBITDA" />
                 <Tooltip
                   cursor={{ strokeDasharray: "3 3", stroke: "rgba(255,255,255,0.15)" }}
                   content={<PeerTooltip />}
                 />
-                <Scatter data={PLOTTABLE} isAnimationActive animationDuration={1200}>
-                  {PLOTTABLE.map((p, i) => (
-                    <Cell
-                      key={i}
-                      fill={COLOR[p.group]}
-                      stroke={p.group === "pilot" ? "#fff" : "transparent"}
-                      strokeWidth={p.group === "pilot" ? 1.5 : 0}
-                    />
-                  ))}
-                </Scatter>
+                <Scatter
+                  data={PLOTTABLE}
+                  shape={<PeerBubble />}
+                  isAnimationActive
+                  animationDuration={1200}
+                />
               </ScatterChart>
             </ResponsiveContainer>
           </div>

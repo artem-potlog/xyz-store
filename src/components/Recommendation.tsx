@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { CheckCircle2, AlertTriangle, ShieldCheck } from "lucide-react";
 import { Section } from "./Section";
 import { AnimatedNumber } from "./AnimatedNumber";
-import { HEADLINE } from "../data/caseData";
+import { HEADLINE, GO_NO_GO } from "../data/caseData";
 
 const HIGHLIGHTS = [
   {
@@ -116,23 +116,32 @@ export function Recommendation() {
             <div className="flex items-center gap-2 text-neon-green">
               <ShieldCheck className="h-4 w-4" />
               <span className="text-xs font-semibold uppercase tracking-wider">
-                Защитный механизм
+                Защитный механизм · stage-gate через 6 мес.
               </span>
             </div>
-            <h3 className="mt-3 font-display text-xl font-semibold text-white">
-              Stage-gate через 6 мес.
-            </h3>
-            <p className="mt-2 text-sm text-slate-400">
-              5 порогов: трафик, маржа, аренда, CAPEX, ФОТ. Каждый - калибровка под
-              расчётную чувствительность NPV.
-            </p>
 
-            <a
-              href="#stage-gate"
-              className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-neon-cyan transition-colors hover:text-neon-green"
-            >
-              Смотреть пороги →
-            </a>
+            <ul className="mt-3 space-y-2">
+              {GO_NO_GO.map((g, i) => (
+                <motion.li
+                  key={g.title}
+                  initial={{ opacity: 0, x: 8 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.15 + i * 0.05, duration: 0.4 }}
+                  className="flex items-baseline justify-between gap-3 rounded-lg border border-white/10 bg-white/[0.02] px-3 py-2"
+                >
+                  <span className="text-sm text-slate-300">{g.title}</span>
+                  <span className="num shrink-0 text-right text-sm font-semibold text-neon-green">
+                    {g.threshold}
+                  </span>
+                </motion.li>
+              ))}
+            </ul>
+
+            <p className="mt-3 text-[11px] text-slate-500">
+              Каждый порог откалиброван под расчётную чувствительность NPV.
+              Масштабирование на 30+ магазинов - только при прохождении всех пяти.
+            </p>
           </div>
         </motion.div>
       </div>

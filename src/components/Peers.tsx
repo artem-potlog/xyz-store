@@ -96,7 +96,7 @@ export function Peers() {
       id="peers"
       eyebrow="Peer benchmark"
       title="Пилот vs публичные ритейлеры"
-      intro="Лента - контрольный бенчмарк для Company XYZ. EBITDA margin Y5 пилота (8,1%) совпадает с Лентой Q4'24; плотность продаж - выше группы и Монетки за счёт компактного формата и доли готовой еды."
+      intro="Лента - контрольный бенчмарк для Company XYZ. EBITDA margin Y1 пилота (5,1%) уже близка к Магниту (5,5%); зрелый Y5 (9,9%) - выше Ленты Q4'24 и сопоставим с О'КЕЙ. Плотность продаж 415-593 тыс. ₽/м² выше Ленты-группы и Монетки."
     >
       <div className="grid gap-6 lg:grid-cols-12">
         <div className="card lg:col-span-7">
@@ -210,10 +210,10 @@ export function Peers() {
 
           <div className="mt-5 grid gap-2 text-xs">
             <div className="rounded-xl border border-neon-green/30 bg-neon-green/[0.06] p-3">
-              <strong className="text-neon-green">Вывод 1:</strong> EBITDA Y5 пилота = Ленте Q4'24 (8,1%) - peer-parity.
+              <strong className="text-neon-green">Вывод 1:</strong> EBITDA Y5 пилота 9,9% выше Ленты Q4'24 (8,1%), на уровне О'КЕЙ.
             </div>
             <div className="rounded-xl border border-neon-cyan/30 bg-neon-cyan/[0.06] p-3">
-              <strong className="text-neon-cyan">Вывод 2:</strong> Плотность 513–705 тыс. ₽/м² &gt; Ленты-группы и Монетки.
+              <strong className="text-neon-cyan">Вывод 2:</strong> Плотность 415-593 тыс. ₽/м² &gt; Ленты-группы (372) и Монетки (346).
             </div>
             <div className="rounded-xl border border-neon-violet/30 bg-neon-violet/[0.06] p-3">
               <strong className="text-neon-violet">Вывод 3:</strong> GM +5 п.п. к Ленте - премия за Fresh + СТМ.

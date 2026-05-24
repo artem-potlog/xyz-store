@@ -1,19 +1,19 @@
 // Single source of truth for all case figures.
-// Numbers replicate the analytical memo + appendix calculations.
+// Numbers replicate the analytical memo + Excel financial model.
 
 export const HEADLINE = {
   storesCount: 10,
   storeAreaM2: 180,
-  capexPerStoreMln: 17.8,
-  capexTotalMln: 178,
-  revenueY1Mln: 924,
-  ebitdaMarginY1: 7.1,
-  ebitdaMarginY5: 8.1,
-  npvMln: 8.5,
-  irrPct: 22.1,
-  dppYears: 4.7,
-  breakevenY1Mln: 611,
-  safetyMarginPct: 51,
+  capexPerStoreMln: 18.7,
+  capexTotalMln: 187,
+  revenueY1Mln: 747,
+  ebitdaMarginY1: 5.1,
+  ebitdaMarginY5: 9.9,
+  npvMln: 26.4,
+  irrPct: 25.5,
+  dppYears: 4.3,
+  breakevenY1Mln: 566,
+  safetyMarginPct: 32,
   wacc: 20,
   taxRate: 25,
 };
@@ -22,41 +22,43 @@ export const SEGMENTS = [
   {
     name: "Soft discounter / магазин у дома с готовой едой",
     short: "Soft discounter + готовая еда",
-    score: 4.1,
+    score: 4.08,
     verdict: "Выбрать",
     status: "green" as const,
     rationale:
       "Победитель: компактный формат 180 м², акцент на готовую еду и СТМ, плотные жилые районы.",
     criteria: {
       growth: 4.5,
-      competition: 4.0,
+      competition: 3.5,
       unit: 4.0,
-      capex: 4.5,
-      ops: 3.5,
+      capex: 4.0,
+      ops: 4.5,
     },
   },
   {
     name: "Жёсткий дискаунтер",
     short: "Жёсткий дискаунтер",
-    score: 3.93,
+    score: 3.83,
     verdict: "Не сейчас",
     status: "yellow" as const,
-    rationale: "Требует масштаба и логистики уровня Чижика; на 10 магазинах юнит-экономика не закроется.",
+    rationale:
+      "Высокий рост, но сильная зависимость от масштаба закупок и логистики; на 10 магазинах не закроется.",
     criteria: {
       growth: 5.0,
       competition: 3.0,
       unit: 3.5,
-      capex: 4.5,
-      ops: 3.5,
+      capex: 4.0,
+      ops: 3.0,
     },
   },
   {
     name: "Премиум convenience / здоровое питание",
     short: "Премиум / ЗОЖ",
-    score: 3.3,
+    score: 3.33,
     verdict: "Узкая ниша",
     status: "yellow" as const,
-    rationale: "Высокая маржа, но трафик и LTV ниже; ниша ВкусВилла плотно занята.",
+    rationale:
+      "Неплохая маржа, но меньше массовый спрос и выше риск локации; ниша ВкусВилла плотно занята.",
     criteria: {
       growth: 3.5,
       competition: 3.0,
@@ -68,16 +70,17 @@ export const SEGMENTS = [
   {
     name: "Классический супермаркет 500+ м²",
     short: "Супермаркет 500+ м²",
-    score: 2.55,
+    score: 2.5,
     verdict: "Отклонить",
     status: "red" as const,
-    rationale: "Формат уходит из СПб (Призма, Карусель, Лэнд); CAPEX и арендный риск растут.",
+    rationale:
+      "Высокая конкуренция и CAPEX, сложнее тестировать пилотом на 10 точек; формат уходит из СПб.",
     criteria: {
-      growth: 2.0,
+      growth: 2.5,
       competition: 2.0,
       unit: 3.0,
-      capex: 2.5,
-      ops: 3.5,
+      capex: 2.0,
+      ops: 3.0,
     },
   },
 ];
@@ -93,37 +96,37 @@ export const SCORING_WEIGHTS = [
 export const COHORT_STEPS = [
   {
     label: "Новые клиенты",
-    value: 5000,
+    value: 4500,
     unit: "/ год",
     note: "посетителей, ставших покупателями",
   },
   {
     label: "Новые repeat",
-    value: 2500,
+    value: 2250,
     unit: "/ год",
     note: "клиенты с 3+ визитами за период",
     arrow: { op: "× 50%", caption: "repeat-конверсия" },
   },
   {
     label: "Active repeats",
-    value: 7500,
+    value: 6750,
     unit: "база",
     note: "steady-state на магазин",
     arrow: { op: "× 3 года", caption: "lifetime repeat-клиента (36 мес.)" },
   },
   {
     label: "Orders от repeats",
-    value: 180000,
+    value: 162000,
     unit: "/ год",
     note: "вся когорта × частота заказов",
     arrow: { op: "× 24 заказа", caption: "2 / месяц × 12 мес." },
   },
   {
     label: "Всего orders",
-    value: 182500,
+    value: 164250,
     unit: "/ год",
     note: "база для расчёта выручки",
-    arrow: { op: "+ 2 500", caption: "one-time orders" },
+    arrow: { op: "+ 2 250", caption: "one-time orders" },
   },
 ];
 
@@ -139,53 +142,53 @@ export const PRODUCT_MIX = [
 export const BLENDED_GM = 27.0;
 
 export const PAYROLL = [
-  { role: "Store Manager (директор)", fte: 1, netBonus: 85, loading: 1.4, cost: 1.43 },
-  { role: "Assistant Manager", fte: 1, netBonus: 65, loading: 1.4, cost: 1.09 },
-  { role: "Cashier", fte: 4, netBonus: 53, loading: 1.4, cost: 3.56 },
-  { role: "Stock Associate", fte: 1, netBonus: 58, loading: 1.4, cost: 0.97 },
-  { role: "Produce / Prepared Food Specialist", fte: 1, netBonus: 65, loading: 1.4, cost: 1.09 },
+  { role: "Store Manager (директор)", fte: 1, netBonus: 75, loading: 1.4, cost: 1.26 },
+  { role: "Assistant Manager (зам. директора)", fte: 1, netBonus: 60, loading: 1.4, cost: 1.01 },
+  { role: "Cashier / Sales Associate (кассир)", fte: 4, netBonus: 50, loading: 1.4, cost: 3.36 },
+  { role: "Stock Associate (товаровед)", fte: 1, netBonus: 55, loading: 1.4, cost: 0.92 },
+  { role: "Повар готовой еды", fte: 1, netBonus: 60, loading: 1.4, cost: 1.01 },
 ];
 
-export const PAYROLL_TOTAL = 8.15;
+export const PAYROLL_TOTAL = 7.56;
 
 export const CAPEX_BREAKDOWN = [
   { item: "Ремонт и подготовка помещения", value: 5.4, color: "#5eead4" },
-  { item: "Холодильное и торговое оборудование", value: 4.6, color: "#22d3ee" },
-  { item: "Стартовый товарный запас (NWC)", value: 4.2, color: "#60a5fa" },
-  { item: "Резерв 7%", value: 1.2, color: "#a78bfa" },
-  { item: "IT, POS, видеонаблюдение, весы", value: 1.1, color: "#fbbf24" },
-  { item: "Вывеска, запуск, маркетинг открытия", value: 0.8, color: "#fb7185" },
+  { item: "Холодильное и торговое оборудование", value: 4.7, color: "#22d3ee" },
+  { item: "Стартовый товарный запас (NWC)", value: 4.0, color: "#60a5fa" },
+  { item: "Резерв 10%", value: 1.7, color: "#a78bfa" },
+  { item: "IT, POS, видеонаблюдение, весы", value: 1.4, color: "#fbbf24" },
+  { item: "Вывеска, запуск, маркетинг открытия", value: 1.0, color: "#fb7185" },
   { item: "Pre-opening, подбор и обучение", value: 0.5, color: "#f97316" },
 ];
 
-// 5-year pilot P&L (mln RUB, full pilot of 10 stores).
-// Derived from README mid-case numbers + growth path Y2-Y5: 8/7/6/5%.
+// 5-year pilot P&L (mln RUB, full pilot of 10 stores) — from Excel DCF model.
+// Y1 ramps to 70% of steady-state; Y2-Y5 hold at steady-state (no further growth).
 export const FIVE_YEAR_PNL = [
-  { year: "Y1", revenue: 924, gm: 249.5, ebitda: 65.6, fcf: -120.0, margin: 7.1 },
-  { year: "Y2", revenue: 998, gm: 269.5, ebitda: 74.8, fcf: 46.0, margin: 7.5 },
-  { year: "Y3", revenue: 1068, gm: 288.4, ebitda: 82.3, fcf: 55.0, margin: 7.7 },
-  { year: "Y4", revenue: 1132, gm: 305.6, ebitda: 89.4, fcf: 62.0, margin: 7.9 },
-  { year: "Y5", revenue: 1189, gm: 321.0, ebitda: 96.3, fcf: 68.5, margin: 8.1 },
+  { year: "Y1", revenue: 747, gm: 201.8, ebitda: 38.1, fcf: 40.6, margin: 5.1 },
+  { year: "Y2", revenue: 1068, gm: 288.3, ebitda: 105.4, fcf: 72.4, margin: 9.9 },
+  { year: "Y3", revenue: 1068, gm: 288.3, ebitda: 105.4, fcf: 88.4, margin: 9.9 },
+  { year: "Y4", revenue: 1068, gm: 288.3, ebitda: 105.4, fcf: 88.4, margin: 9.9 },
+  { year: "Y5", revenue: 1068, gm: 288.3, ebitda: 105.4, fcf: 88.4, margin: 9.9 },
 ];
 
 export const SCENARIOS = [
   {
     id: "base",
-    name: "Base case (consensus)",
+    name: "Базовый",
     tone: "positive" as const,
     drivers: [
       "Прогноз 2026: food-retail +6,6% (Альфа)",
-      "ФОТ +7%/год",
       "Готовая еда работает",
+      "ФОТ +7%/год",
     ],
-    npv: 8.5,
-    irr: 22.1,
-    dpp: 4.7,
-    dppLabel: "4,7 года",
+    npv: 26.4,
+    irr: 25.5,
+    dpp: 4.3,
+    dppLabel: "4,3 года",
   },
   {
     id: "stagflation",
-    name: "Stagflation drag",
+    name: "Стагфляция",
     tone: "negative" as const,
     drivers: [
       "Жёсткая ДКП дольше",
@@ -193,52 +196,56 @@ export const SCENARIOS = [
       "ФОТ +10%; маржа −1,5 п.п.; трафик −8%",
       "Рост −2 п.п./год",
     ],
-    npv: -97.4,
-    irr: -9.3,
+    npv: -72.8,
+    irr: 3.9,
     dpp: null,
     dppLabel: "не окупается",
   },
   {
     id: "easing",
-    name: "Easing cycle",
+    name: "Смягчение ДКП",
     tone: "positive" as const,
     drivers: [
       "Ускоренное смягчение ДКП",
-      "Реальная з/п +5%",
+      "Реальная з/п +5% (Альфа bull)",
       "Средний чек +5%; маржа +1,5 п.п.",
       "Рост +2 п.п./год",
     ],
-    npv: 88.8,
-    irr: 39.5,
-    dpp: 3.1,
-    dppLabel: "3,1 года",
+    npv: 88.5,
+    irr: 37.6,
+    dpp: 3.2,
+    dppLabel: "3,2 года",
   },
   {
     id: "discount_race",
-    name: "Discount race (sectoral)",
+    name: "Гонка дискаунтеров",
     tone: "negative" as const,
     drivers: [
       "Хард-дискаунтеры давят (+50%/+31% в 1П2025)",
       "Price match",
       "Маржа −2 п.п.; трафик −5%",
     ],
-    npv: -62.3,
-    irr: 3.4,
+    npv: -42.8,
+    irr: 10.4,
     dpp: null,
     dppLabel: "не окупается",
   },
 ];
 
-// 5x5 sensitivity matrix: rows = GM delta (п.п.), cols = revenue multiplier.
-export const SENSITIVITY_REVENUE_AXIS = [0.9, 0.95, 1.0, 1.05, 1.1];
-export const SENSITIVITY_GM_AXIS = [-1.5, -0.5, 0.0, 0.5, 1.5];
+// 7x7 sensitivity matrix: rows = GM delta (п.п.), cols = revenue multiplier.
+export const SENSITIVITY_REVENUE_AXIS = [0.85, 0.9, 0.95, 1.0, 1.05, 1.1, 1.15];
+export const SENSITIVITY_GM_AXIS = [-1.5, -1.0, -0.5, 0.0, 0.5, 1.0, 1.5];
 export const SENSITIVITY_NPV: number[][] = [
-  [-73, -51, -28, -6, 17],
-  [-51, -28, -4, 20, 44],
-  [-40, -16, 9, 33, 57],
-  [-29, -4, 21, 46, 71],
-  [-7, 19, 45, 71, 98],
+  [-84.1, -58.2, -32.4, -6.5, 19.4, 45.2, 71.1],
+  [-74.8, -48.4, -22.0, 4.5, 30.9, 57.3, 83.7],
+  [-65.5, -38.5, -11.5, 15.4, 42.4, 69.4, 96.3],
+  [-56.1, -28.6, -1.1, 26.4, 53.9, 81.4, 108.9],
+  [-46.8, -18.7, 9.3, 37.4, 65.4, 93.5, 121.6],
+  [-37.5, -8.9, 19.7, 48.4, 77.0, 105.6, 134.2],
+  [-28.1, 1.0, 30.2, 59.3, 88.5, 117.6, 146.8],
 ];
+// Index of the base case row/col (GM +0.0%, ×1.00) for the matrix highlight.
+export const SENSITIVITY_BASE = { row: 3, col: 3, npv: 26.4 };
 
 export const PEERS = [
   {
@@ -253,18 +260,18 @@ export const PEERS = [
   },
   { name: "Лента - Монетка (у дома)", short: "Монетка", area: 272, density: 346, gm: null, ebitda: null, group: "peer" as const },
   { name: "X5 - Пятёрочка (у дома)", short: "Пятёрочка", area: 300, density: 422, gm: 24, ebitda: 6.5, ebitdaNote: "сегм. ~6-7%", group: "peer" as const },
-  { name: "X5 - Чижик (хард-дискаунтер)", short: "Чижик", area: 350, density: null, gm: null, ebitda: 0, ebitdaNote: "~0%", group: "peer" as const },
+  { name: "X5 - Чижик (хард-дискаунтер)", short: "Чижик", area: 350, density: null, gm: null, ebitda: 0.5, ebitdaNote: "~0,5%", group: "peer" as const },
   { name: "Магнит (группа) 2024", short: "Магнит", area: 250, density: 280, gm: null, ebitda: 5.5, group: "peer" as const },
-  { name: "ВкусВилл (с дарксторами)", short: "ВкусВилл", area: 150, density: null, gm: null, ebitda: 5, ebitdaNote: "оценка", group: "peer" as const },
+  { name: "ВкусВилл (с дарксторами)", short: "ВкусВилл", area: 150, density: null, gm: null, ebitda: 5.0, ebitdaNote: "оценка", group: "peer" as const },
   { name: "О'КЕЙ - гипермаркеты 2024", short: "О'КЕЙ", area: 5500, density: null, gm: null, ebitda: 9.1, group: "peer" as const },
-  { name: "Пилот XYZ - Y1", short: "Пилот Y1", area: 180, density: 513, gm: 27, ebitda: 7.1, group: "pilot" as const },
-  { name: "Пилот XYZ - Y5 (зрелая фаза)", short: "Пилот Y5", area: 180, density: 705, gm: 27, ebitda: 8.1, group: "pilot" as const },
+  { name: "Пилот XYZ - Y1", short: "Пилот Y1", area: 180, density: 415, gm: 27, ebitda: 5.1, group: "pilot" as const },
+  { name: "Пилот XYZ - Y5 (зрелая фаза)", short: "Пилот Y5", area: 180, density: 593, gm: 27, ebitda: 9.9, group: "pilot" as const },
 ];
 
 export const GO_NO_GO = [
   {
     title: "Трафик на магазин",
-    threshold: "≥ 480 чеков/день",
+    threshold: "≥ 430 чеков/день",
     horizon: "к 6-му месяцу",
     why: "Ниже → выручка −10% от плана, NPV в минус",
     icon: "Users",
@@ -272,7 +279,7 @@ export const GO_NO_GO = [
   },
   {
     title: "Валовая маржа",
-    threshold: "≥ 25%",
+    threshold: "≥ 25,7%",
     horizon: "стабильно",
     why: "Ниже → GM −1,5 п.п. от базы 27%, NPV в минус",
     icon: "Percent",
@@ -288,7 +295,7 @@ export const GO_NO_GO = [
   },
   {
     title: "CAPEX",
-    threshold: "≤ 20 млн ₽/магазин",
+    threshold: "≤ 21 млн ₽/магазин",
     horizon: "вкл. резерв",
     why: "Выше → каждые +10% CAPEX обнуляют NPV",
     icon: "Hammer",
@@ -296,9 +303,9 @@ export const GO_NO_GO = [
   },
   {
     title: "ФОТ",
-    threshold: "≤ 9 млн ₽/магазин/год",
+    threshold: "≤ 10 млн ₽/магазин/год",
     horizon: "Y1",
-    why: "Выше → индексация ФОТ съедает EBITDA уже в Y1",
+    why: "Выше → рост ФОТ съедает EBITDA уже в Y1",
     icon: "Wallet",
     tone: "rose" as const,
   },
@@ -306,17 +313,17 @@ export const GO_NO_GO = [
 
 export const ASSUMPTIONS = [
   { key: "Площадь магазина", value: "180 м²" },
-  { key: "Аренда", value: "2 200 ₽/м²/мес. (СПб)" },
-  { key: "Индексация аренды", value: "5% / год" },
-  { key: "Индексация ФОТ", value: "7% / год" },
-  { key: "Maintenance CAPEX", value: "1% выручки с Y2" },
-  { key: "ΔNWC", value: "2% от прироста выручки" },
+  { key: "Аренда", value: "2 000 ₽/м²/мес. (СПб)" },
+  { key: "ФОТ", value: "7,56 млн ₽/магазин/год" },
+  { key: "Loading ФОТ", value: "1,40 (НДФЛ 13% + взносы ~30%)" },
+  { key: "Средний чек", value: "650 ₽" },
+  { key: "Ramp-up Y1", value: "70% от steady state" },
+  { key: "Y2-Y5", value: "100% от steady state" },
+  { key: "Inventory turnover", value: "25 дней" },
+  { key: "Depreciation", value: "5 лет, прямолинейная" },
+  { key: "Maintenance CAPEX", value: "не моделируется (5Y)" },
   { key: "Налог на прибыль", value: "25%" },
   { key: "WACC", value: "20%" },
-  { key: "Рост выручки Y2–Y5", value: "8% / 7% / 6% / 5%" },
-  { key: "Ramp-up Y1", value: "3 мес. линейно, фактор 93,75%" },
-  { key: "Средний чек", value: "540 ₽" },
-  { key: "Loading ФОТ", value: "1,40 (НДФЛ 13% + взносы ~30%)" },
 ];
 
 export const SOURCES = [
@@ -386,4 +393,3 @@ export const SOURCES = [
     type: "Open",
   },
 ];
-

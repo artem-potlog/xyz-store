@@ -10,13 +10,13 @@ const HIGHLIGHTS = [
     value: HEADLINE.ebitdaMarginY1,
     suffix: "%",
     decimals: 1,
-    sub: "→ Y5 8,1% = Лента Q4'24",
+    sub: "→ Y5 9,9% > Лента Q4'24",
   },
   {
     label: "Выручка Y1",
     value: HEADLINE.revenueY1Mln,
     suffix: " млн ₽",
-    sub: "10 магазинов × 92,4 млн",
+    sub: "10 магазинов × 75 млн (ramp-up 70%)",
   },
   {
     label: "Breakeven Y1",
@@ -62,8 +62,8 @@ export function Recommendation() {
               </h3>
               <p className="mt-4 text-slate-300">
                 10 магазинов × 180 м² в плотных жилых районах. Mix-weighted GM 27,0%;
-                ФОТ 8,15 млн ₽/магазин/год; ramp-up Y1 = 93,75%; индексация аренды 5%
-                и ФОТ 7% в год.
+                ФОТ 7,56 млн ₽/магазин/год; ramp-up Y1 = 70%; средний чек 650 ₽; аренда
+                2 000 ₽/м²/мес.
               </p>
 
               <div className="mt-7 grid grid-cols-2 gap-3 md:grid-cols-4">

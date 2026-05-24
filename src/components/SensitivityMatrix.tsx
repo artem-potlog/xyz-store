@@ -46,7 +46,7 @@ export function SensitivityMatrix() {
       id="sensitivity"
       eyebrow="2-факторная чувствительность"
       title="Матрица NPV: выручка × валовая маржа"
-      intro="Двумерная стресс-карта. Колонки - мультипликатор выручки ×0,90 ÷ ×1,10. Строки - сдвиг GM в п.п. от базы 27,0%. Кликни/наведи на ячейку, чтобы прочитать сочетание."
+      intro="Двумерная стресс-карта 7×7. Колонки - мультипликатор выручки ×0,85 ÷ ×1,15. Строки - сдвиг GM в п.п. от базы 27,0%. Кликни/наведи на ячейку, чтобы прочитать сочетание."
     >
       <div className="card overflow-hidden">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
@@ -161,7 +161,7 @@ export function SensitivityMatrix() {
                     Выручка × 1,00 · GM +0,0 п.п.
                   </div>
                   <div className="num mt-2 font-display text-4xl font-bold text-neon-green">
-                    +9<span className="text-base text-slate-400"> млн ₽</span>
+                    +26,4<span className="text-base text-slate-400"> млн ₽</span>
                   </div>
                 </>
               )}

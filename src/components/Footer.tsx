@@ -24,7 +24,7 @@ export function Footer() {
               5-летний горизонт
             </span>
             <span className="chip border-neon-green/30 bg-neon-green/[0.06] text-neon-green">
-              NPV +8,5 млн ₽
+              NPV +26,4 млн ₽
             </span>
           </div>
         </div>

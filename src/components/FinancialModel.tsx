@@ -170,23 +170,24 @@ function CohortPanel() {
       <div className="card lg:col-span-5">
         <h3 className="font-display text-lg font-semibold text-white">Перевод в выручку</h3>
         <p className="mt-1 text-sm text-slate-400">
-          182 500 заказов × средний чек 540 ₽ × ramp-up 93,75% = Y1 revenue на магазин.
+          164 250 заказов × средний чек 650 ₽ × ramp-up 70% = Y1 revenue на магазин.
+          Y2+ - 100% от steady state.
         </p>
         <div className="mt-6 space-y-4">
-          <CalcRow label="Заказов / год" value="182 500" />
-          <CalcRow label="Средний чек" value="540 ₽" />
-          <CalcRow label="Ramp-up Y1" value="93,75%" />
+          <CalcRow label="Заказов / год (SS)" value="164 250" />
+          <CalcRow label="Средний чек" value="650 ₽" />
+          <CalcRow label="Ramp-up Y1" value="70%" />
           <div className="divider" />
           <div className="flex items-baseline justify-between">
             <span className="text-sm font-medium text-slate-300">Y1 revenue / магазин</span>
             <span className="num font-display text-2xl font-bold text-neon-green">
-              <AnimatedNumber value={92.4} decimals={1} suffix=" млн ₽" />
+              <AnimatedNumber value={74.7} decimals={1} suffix=" млн ₽" />
             </span>
           </div>
           <div className="rounded-xl border border-neon-green/20 bg-neon-green/[0.06] p-3">
             <div className="text-[10px] uppercase tracking-wider text-neon-green">10 магазинов</div>
             <div className="num mt-1 font-display text-3xl font-bold text-white">
-              <AnimatedNumber value={924} suffix=" млн ₽" />
+              <AnimatedNumber value={747} suffix=" млн ₽" />
             </div>
           </div>
         </div>
@@ -401,7 +402,7 @@ function CapexPanel() {
     <div className="grid gap-6 lg:grid-cols-12">
       <div className="card lg:col-span-7">
         <h3 className="font-display text-lg font-semibold text-white">
-          CAPEX на 1 магазин · 17,8 млн ₽
+          CAPEX на 1 магазин · 18,7 млн ₽
         </h3>
         <p className="mt-1 text-sm text-slate-400">
           Без логистики (есть существующие мощности). Включает NWC (стартовый товарный запас) и резерв 7%.
@@ -439,9 +440,9 @@ function CapexPanel() {
       <div className="card lg:col-span-5">
         <div className="text-[10px] uppercase tracking-wider text-slate-400">CAPEX пилота</div>
         <div className="num mt-2 font-display text-5xl font-bold text-white">
-          <AnimatedNumber value={178} suffix=" млн ₽" />
+          <AnimatedNumber value={187} suffix=" млн ₽" />
         </div>
-        <div className="text-sm text-slate-400">10 магазинов × 17,8 млн ₽</div>
+        <div className="text-sm text-slate-400">10 магазинов × 18,7 млн ₽</div>
 
         <div className="my-5 divider" />
 
@@ -482,7 +483,8 @@ function PnlPanel() {
           5-летний P&L пилота · 10 магазинов
         </h3>
         <p className="mt-1 text-sm text-slate-400">
-          Рост Y2–Y5: 8 / 7 / 6 / 5%. EBITDA margin Y1 → Y5: 7,1% → 8,1% (= Лента Q4'24).
+          Y1 - ramp-up 70% от steady state; Y2-Y5 удерживают steady state.
+          EBITDA margin Y1 → Y5: 5,1% → 9,9% (выше Ленты Q4'24).
         </p>
 
         <div className="mt-6 h-80 w-full">
@@ -561,15 +563,15 @@ function PnlPanel() {
         <div className="mt-5 grid grid-cols-3 gap-2 text-center">
           <div className="rounded-xl border border-neon-green/30 bg-neon-green/[0.06] p-3">
             <div className="text-[10px] uppercase tracking-wider text-neon-green">NPV</div>
-            <div className="num mt-1 font-display text-lg font-bold text-white">+8,5</div>
+            <div className="num mt-1 font-display text-lg font-bold text-white">+26,4</div>
           </div>
           <div className="rounded-xl border border-neon-cyan/30 bg-neon-cyan/[0.06] p-3">
             <div className="text-[10px] uppercase tracking-wider text-neon-cyan">IRR</div>
-            <div className="num mt-1 font-display text-lg font-bold text-white">22,1%</div>
+            <div className="num mt-1 font-display text-lg font-bold text-white">25,5%</div>
           </div>
           <div className="rounded-xl border border-neon-violet/30 bg-neon-violet/[0.06] p-3">
             <div className="text-[10px] uppercase tracking-wider text-neon-violet">DPP</div>
-            <div className="num mt-1 font-display text-lg font-bold text-white">4,7</div>
+            <div className="num mt-1 font-display text-lg font-bold text-white">4,3</div>
           </div>
         </div>
       </div>

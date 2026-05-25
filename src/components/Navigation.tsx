@@ -10,6 +10,7 @@ const SECTIONS = [
   { id: "scenarios", label: "Сценарии" },
   { id: "sensitivity", label: "Чувствительность" },
   { id: "peers", label: "Пиры" },
+  { id: "monte-carlo", label: "Monte Carlo" },
   { id: "stage-gate", label: "Stage-gate" },
   { id: "sources", label: "Источники" },
 ];

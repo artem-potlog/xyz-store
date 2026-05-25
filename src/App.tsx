@@ -7,6 +7,7 @@ import { FinancialModel } from "./components/FinancialModel";
 import { Scenarios } from "./components/Scenarios";
 import { SensitivityMatrix } from "./components/SensitivityMatrix";
 import { Peers } from "./components/Peers";
+import { MonteCarlo } from "./components/MonteCarlo";
 import { StageGate } from "./components/StageGate";
 import { Sources } from "./components/Sources";
 import { Footer } from "./components/Footer";
@@ -24,6 +25,7 @@ export default function App() {
         <Scenarios />
         <SensitivityMatrix />
         <Peers />
+        <MonteCarlo />
         <StageGate />
         <Sources />
       </main>
